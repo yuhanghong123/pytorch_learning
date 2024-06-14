@@ -24,4 +24,32 @@
 
 6. 编写主函数时，可以将传参过程写成函数形式
 
-7. 
+7. ```python
+   python -m torch.distributed.launch --nnodes=1 --node_rank=0 --nproc_per_node=8 --master_addr="127.0.0.1" --master_port=29501 main.py --cfg </path/to/config> --batch-size 128 --data-path </path/of/dataset> --output /tmp
+   ```
+
+   使用分布式PyTorch进行训练。
+
+   `python -m torch.distributed.launch`：使用 PyTorch 的分布式启动工具启动训练脚本。
+
+   `--nnodes=1`：指定总共的节点数为1（单节点训练）。
+
+   `--node_rank=0`：指定当前节点的排名（对于单节点训练，总是0）。
+
+   `--nproc_per_node=8`：在每个节点上启动的进程数（这里是8个进程）。
+
+   `--master_addr="127.0.0.1"`：主节点的地址（单节点情况下是本地地址）。
+
+   `--master_port=29501`：主节点的端口号。
+
+   `main.py`：要运行的主训练脚本。
+
+   `--cfg </path/to/config>`：配置文件路径（你需要替换为实际路径）。
+
+   `--batch-size 128`：批处理大小。
+
+   `--data-path </path/of/dataset>`：数据集路径（你需要替换为实际路径）。
+
+   `--output /tmp`：输出目录。
+
+8. 
